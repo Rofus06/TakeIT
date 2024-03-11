@@ -1,0 +1,14 @@
+c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\bin\Debug\net8.0\Shop.exe
+c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\bin\Debug\net8.0\Shop.deps.json
+c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\bin\Debug\net8.0\Shop.runtimeconfig.json
+c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\bin\Debug\net8.0\Shop.dll
+c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\bin\Debug\net8.0\Shop.pdb
+c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\obj\Debug\net8.0\Shop.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\obj\Debug\net8.0\Shop.AssemblyInfoInputs.cache
+c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\obj\Debug\net8.0\Shop.AssemblyInfo.cs
+c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\obj\Debug\net8.0\Shop.csproj.CoreCompileInputs.cache
+c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\obj\Debug\net8.0\Shop.dll
+c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\obj\Debug\net8.0\refint\Shop.dll
+c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\obj\Debug\net8.0\Shop.pdb
+c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\obj\Debug\net8.0\Shop.genruntimeconfig.cache
+c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\obj\Debug\net8.0\ref\Shop.dll
