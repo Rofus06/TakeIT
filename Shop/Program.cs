@@ -8,6 +8,21 @@ namespace ConsoleGame
         {
             Console.SetWindowSize(60, 32); // Set console window size
 
+            while (true)
+            {
+                // Start a new game session
+                RunGameSession(false);
+                
+                // Ask if the player wants to play again
+                Console.WriteLine("Do you want to play again? (Y/N)");
+                string input = Console.ReadLine().ToUpper();
+                if (input != "Y")
+                    break;
+            }
+        }
+
+        static void RunGameSession(bool isSecondGame)
+        {
             int playerX = 0; // Initial x position of the player
             int playerY = 0; // Initial y position of the player
 
@@ -30,7 +45,7 @@ namespace ConsoleGame
                         }
                         else if (x == npcX && y == npcY)
                         {
-                            Console.Write("O"); // Draw the NPC
+                            Console.Write(isSecondGame ? "G" : "O"); // Draw NPC or NPC2 based on game session
                         }
                         else
                         {
@@ -40,13 +55,33 @@ namespace ConsoleGame
                     Console.WriteLine();
                 }
 
+                // Check if the player is touching the NPC
+                if (playerX == npcX && playerY == npcY)
+                {
+                    Console.WriteLine("You touched the NPC!");
+                    Console.WriteLine("Starting a new game...");
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+
+                    // Start a new game session
+                    RunGameSession(true); // Indicate that it's the second game session
+                    return; // Exit the current game session
+                }
+
                 // Prompt the user for input
                 Console.WriteLine("Enter move (e.g., 5S, 3A, 7D, 4W) + Enter: ");
                 string command = Console.ReadLine().ToUpper(); // Read the command and convert to uppercase
 
+                // Check if the input length is not equal to 2
+                if (command.Length != 2)
+                {
+                    Console.WriteLine("You need to use the number and the word (e.g., 5S)");
+                    continue; // Restart the loop
+                }
+
                 // Extract the direction and steps from the command
-                char direction = command[command.Length - 1];
-                int steps = int.Parse(command.Substring(0, command.Length - 1));
+                char direction = command[1];
+                int steps = int.Parse(command.Substring(0, 1));
 
                 // Move the player based on user input
                 for (int i = 0; i < steps; i++)
@@ -68,8 +103,6 @@ namespace ConsoleGame
                         playerY++;
                     }
                 }
-
-                // The console will clear and redraw the board at the start of the next loop iteration
             }
         }
     }

@@ -12,3 +12,4 @@ c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\obj\Debug\net8.0\refint\S
 c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\obj\Debug\net8.0\Shop.pdb
 c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\obj\Debug\net8.0\Shop.genruntimeconfig.cache
 c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\obj\Debug\net8.0\ref\Shop.dll
+c:\Users\filip.scherlund\Desktop\Test visual\Shop\Shop\obj\Debug\net8.0\Shop.sourcelink.json
