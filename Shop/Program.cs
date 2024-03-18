@@ -30,6 +30,12 @@ namespace ConsoleGame
             int npcX = rnd.Next(60); // Random initial x position of the NPC
             int npcY = rnd.Next(30); // Random initial y position of the NPC
 
+            // Character to represent NPC
+            char npcCharacter = isSecondGame ? 'G' : 'O';
+            
+            // Character to represent obstacle
+            char obstacleCharacter = isSecondGame ? 'T' : 'G';
+            
             while (true)
             {
                 Console.Clear(); // Clear the console screen
@@ -45,7 +51,11 @@ namespace ConsoleGame
                         }
                         else if (x == npcX && y == npcY)
                         {
-                            Console.Write(isSecondGame ? "G" : "O"); // Draw NPC or NPC2 based on game session
+                            Console.Write(npcCharacter); // Draw NPC or finish line
+                        }
+                        else if (x == npcX + 5 && y == npcY && isSecondGame)
+                        {
+                            Console.Write(obstacleCharacter); // Draw obstacle during second game
                         }
                         else
                         {
@@ -58,13 +68,32 @@ namespace ConsoleGame
                 // Check if the player is touching the NPC
                 if (playerX == npcX && playerY == npcY)
                 {
-                    Console.WriteLine("You touched the NPC!");
-                    Console.WriteLine("Starting a new game...");
+                    if (npcCharacter == 'G')
+                    {
+                        Console.WriteLine("Congratulations! You reached the finish line!");
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
+                        return; // Exit the current game session
+                    }
+                    else
+                    {
+                        Console.WriteLine("You touched the NPC!");
+                        Console.WriteLine("Starting a new game...");
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
+
+                        // Start a new game session
+                        RunGameSession(true); // Indicate that it's the second game session
+                        return; // Exit the current game session
+                    }
+                }
+                
+                // Check if the player is touching the obstacle
+                if (playerX == npcX + 5 && playerY == npcY && isSecondGame)
+                {
+                    Console.WriteLine("You touched the obstacle! You died!");
                     Console.WriteLine("Press any key to continue...");
                     Console.ReadKey();
-
-                    // Start a new game session
-                    RunGameSession(true); // Indicate that it's the second game session
                     return; // Exit the current game session
                 }
 
@@ -72,10 +101,10 @@ namespace ConsoleGame
                 Console.WriteLine("Enter move (e.g., 5S, 3A, 7D, 4W) + Enter: ");
                 string command = Console.ReadLine().ToUpper(); // Read the command and convert to uppercase
 
-                // Check if the input length is not equal to 2
-                if (command.Length != 2)
+                // Check if the input length is not equal to 2 or if it's not in the correct format
+                if (command.Length != 2 || !char.IsLetter(command[1]) || !char.IsDigit(command[0]))
                 {
-                    Console.WriteLine("You need to use the number and the word (e.g., 5S)");
+                    Console.WriteLine("Invalid input format. Please use the format: [Number][Direction] (e.g., 5S)");
                     continue; // Restart the loop
                 }
 
