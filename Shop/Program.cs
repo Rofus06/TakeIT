@@ -32,10 +32,32 @@ namespace ConsoleGame
 
             // Character to represent NPC
             char npcCharacter = isSecondGame ? 'G' : 'O';
-            
+
             // Character to represent obstacle
             char obstacleCharacter = isSecondGame ? 'T' : 'G';
             
+            // List to hold obstacle positions
+            List<(int, int)> obstaclePositions = new List<(int, int)>();
+
+            // Generate obstacle positions
+            if (isSecondGame)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    int obstacleX = rnd.Next(60);
+                    int obstacleY = rnd.Next(30);
+
+                    // Ensure the obstacle is not overlapping with the NPC
+                    while ((obstacleX == npcX && obstacleY == npcY) || (obstacleX == npcX + 5 && obstacleY == npcY))
+                    {
+                        obstacleX = rnd.Next(60);
+                        obstacleY = rnd.Next(30);
+                    }
+
+                    obstaclePositions.Add((obstacleX, obstacleY));
+                }
+            }
+
             while (true)
             {
                 Console.Clear(); // Clear the console screen
@@ -53,7 +75,7 @@ namespace ConsoleGame
                         {
                             Console.Write(npcCharacter); // Draw NPC or finish line
                         }
-                        else if (x == npcX + 5 && y == npcY && isSecondGame)
+                        else if (isSecondGame && obstaclePositions.Contains((x, y)))
                         {
                             Console.Write(obstacleCharacter); // Draw obstacle during second game
                         }
@@ -89,12 +111,20 @@ namespace ConsoleGame
                 }
                 
                 // Check if the player is touching the obstacle
-                if (playerX == npcX + 5 && playerY == npcY && isSecondGame)
+                if (isSecondGame && obstaclePositions.Any(pos => pos.Item1 == playerX && pos.Item2 == playerY))
                 {
-                    Console.WriteLine("You touched the obstacle! You died!");
-                    Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey();
-                    return; // Exit the current game session
+                    Console.WriteLine("You touched an obstacle! You died!");
+                    Console.WriteLine("Do you want to start a new game? (Y/N)");
+                    string input = Console.ReadLine().ToUpper();
+                    if (input == "Y")
+                    {
+                        // Start a new game session
+                        RunGameSession(true); // Indicate that it's the second game session
+                    }
+                    else
+                    {
+                        return; // Exit the current game session
+                    }
                 }
 
                 // Prompt the user for input
